@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Lyndsey Ferguson
+  description: Simplified control over the power settings for macOS
+  company: Appian Corporation
+  license: Apache
+  min_ansible_version: 1.2
+  platforms:
+  - name: macOS
+    versions:
+    - all
+  - name: MacOSX
+    versions:
+    - 10.11
+  galaxy_tags: 
+    - mac
+    - macOS
+    - macOSX
+    - power
+    - setting
+    - settings
+dependencies: []

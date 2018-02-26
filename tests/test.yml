@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - { role: macos-power, 
+        macos_power_settings: [
+          { cmd : displaysleep,         desired_value: 'after 15 minutes' },
+          { cmd : computersleep,        desired_value: 'Never' },
+          { cmd : harddisksleep,        desired_value: 'Never' },
+          { cmd : wakeonnetworkaccess,  desired_value: 'On' },
+          { cmd : restartfreeze,        desired_value: 'On' }
+        ]
+      }

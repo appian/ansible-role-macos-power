@@ -1,0 +1,19 @@
+---
+  - name: Get power settings
+    command: "systemsetup -get{{ item.cmd }}"
+    with_items:
+      - "{{ macos_power_settings }}"
+    register: macos_power_settings_results
+    become: true
+    changed_when: False
+
+  - name: Set power settings
+    # regex_replace('.*(\\d+).*', '\\1') yields just the digit if there is a match, otherwise the value is unchanged.
+    # Used so we can get the 5 from displaysleep while still comparing it the actual output.
+    command: "systemsetup -set{{ item[0].cmd }} {{ item[0].desired_value | regex_replace('.*\\s(\\d*)\\s.*', '\\1')}}"
+    become: true
+    when: item[1] != item[0].desired_value
+    with_together:
+      - "{{ macos_power_settings }}"
+      # The following filter is used to simplify the `when` statement above.
+      - "{{ macos_power_settings_results.results|map(attribute='stdout')|map('regex_replace', '.*:\\s(.*)', '\\1')|list }}"
