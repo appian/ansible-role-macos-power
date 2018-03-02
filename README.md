@@ -30,4 +30,4 @@ Available variables are listed below, along with default values in minutes:
 ```
 ## License
 
-MIT
+Apache 2.0
