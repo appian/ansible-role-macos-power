@@ -6,6 +6,7 @@
     register: macos_power_settings_results
     become: true
     changed_when: False
+    check_mode: no
 
   - name: Set power settings
     # regex_replace('.*(\\d+).*', '\\1') yields just the digit if there is a match, otherwise the value is unchanged.
